@@ -22,17 +22,13 @@ public class HomeInstructorActivity extends AppCompatActivity implements BottomN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_instructor);
 
-        bottomNavigationView
-                = findViewById(R.id.bottomNavigationView);
 
-        bottomNavigationView
-                .setOnItemSelectedListener(this);
-        setTitle("Home");
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnItemSelectedListener(this);
+
         bottomNavigationView.setSelectedItemId(R.id.home);
-
-
-
-
+        //setTitle("Home");
     }
 
     @Override

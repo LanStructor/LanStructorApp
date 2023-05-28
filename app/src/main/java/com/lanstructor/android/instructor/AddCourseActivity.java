@@ -43,13 +43,24 @@ public class AddCourseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_course);
         getSupportActionBar().setTitle("Add Course");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         selectImage = findViewById(R.id.selectImage);
         EditText name = findViewById(R.id.name);
-        EditText price = findViewById(R.id.price);
-        EditText details = findViewById(R.id.details);
         Spinner mainLang = findViewById(R.id.mainLang);
         Spinner category = findViewById(R.id.category);
+        EditText details = findViewById(R.id.details);
+        EditText price = findViewById(R.id.price);
         Button add = findViewById(R.id.add);
+
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,34);
+            }
+        });
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,14 +119,6 @@ public class AddCourseActivity extends AppCompatActivity {
             }
         });
 
-        selectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent,34);
-            }
-        });
     }
 
     @Override

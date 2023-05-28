@@ -107,7 +107,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(context, "Accepted Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Rejected Successfully", Toast.LENGTH_SHORT).show();
 
                         }else {
                             Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();

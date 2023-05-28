@@ -37,7 +37,7 @@ public class HomeAdminActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         InstructorAdapter adapter = new InstructorAdapter(HomeAdminActivity.this,instructors);
         recyclerView.setAdapter(adapter);
-
+       //                                                                      to get only instructors
         FirebaseDatabase.getInstance().getReference().child("users").orderByChild("userType").equalTo("Instructor").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -51,18 +51,14 @@ public class HomeAdminActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
-
-
-
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //to display add group and logout icons
         getMenuInflater().inflate(R.menu.logout_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
@@ -73,16 +69,15 @@ public class HomeAdminActivity extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(HomeAdminActivity.this);
             alert.setMessage("Are you sure?")
                     .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-
                         public void onClick(DialogInterface dialog, int which) {
+                            //sign out from database
                             FirebaseAuth.getInstance().signOut();
                             startActivity(new Intent(HomeAdminActivity.this, LoginActivity.class));
                             finish();
                         }
                     }).setNegativeButton("Cancel", null);
 
-            AlertDialog alert1 = alert.create();
-            alert1.show();
+            alert.show();
 
         }else if(item.getItemId() ==  R.id.add_group){
             startActivity(new Intent(HomeAdminActivity.this, AddGroupActivity.class));

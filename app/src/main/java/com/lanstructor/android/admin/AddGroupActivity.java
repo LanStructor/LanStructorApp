@@ -40,6 +40,7 @@ public class AddGroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_group);
         getSupportActionBar().setTitle("Add Group");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         add_group_image = findViewById(R.id.add_group_image);
         EditText name = findViewById(R.id.name);
         EditText bio = findViewById(R.id.bio);
@@ -70,10 +71,13 @@ public class AddGroupActivity extends AppCompatActivity {
                     ProgressDialog progressDialog = new ProgressDialog(AddGroupActivity.this);
                     progressDialog.setMessage("Loading...");
                     progressDialog.show();
+
                     String id = FirebaseDatabase.getInstance().getReference().child("groups").push().getKey();
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("groups").child(id);
+
                     add_group_image.setDrawingCacheEnabled(true);
                     add_group_image.buildDrawingCache();
+
                     Bitmap bitmap = ((BitmapDrawable) add_group_image.getDrawable()).getBitmap();
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);

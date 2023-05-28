@@ -32,17 +32,23 @@ public class InstructorDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_instructor_details);
         getSupportActionBar().setTitle("Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         TextView username = findViewById(R.id.username);
         TextView phone = findViewById(R.id.phone);
         TextView mainLang = findViewById(R.id.mainLang);
         ImageView certificate = findViewById(R.id.certificate);
-
         TextView email = findViewById(R.id.email);
         Button accept = findViewById(R.id.accept);
         Button reject = findViewById(R.id.reject);
 
         Intent intent = getIntent();
-        User instructor= (User) intent.getSerializableExtra("instructor");
+        User instructor= (User)intent.getSerializableExtra("instructor");
+
+        username.setText(instructor.username);
+        phone.setText(instructor.phone);
+        email.setText(instructor.email);
+        mainLang.setText(instructor.mainLang);
+
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(instructor.id);
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -59,10 +65,6 @@ public class InstructorDetailsActivity extends AppCompatActivity {
                 // Handle any errors
             }
         });
-        username.setText(instructor.username);
-        phone.setText(instructor.phone);
-        email.setText(instructor.email);
-        mainLang.setText(instructor.mainLang);
 
         accept.setOnClickListener(new View.OnClickListener() {
             @Override

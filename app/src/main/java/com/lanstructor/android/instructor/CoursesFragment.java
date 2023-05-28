@@ -43,15 +43,18 @@ public class CoursesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_courses, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        RecyclerView recyclerViewCategory = view.findViewById(R.id.recyclerViewCategory);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
-        LinearLayoutManager linearLayoutManagerHor = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerViewCategory.setLayoutManager(linearLayoutManagerHor);
-
 
         FloatingActionButton floatingActionButton = view.findViewById(R.id.floatingActionButton);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        RecyclerView recyclerViewCategory = view.findViewById(R.id.recyclerViewCategory);
+
+        LinearLayoutManager linearLayoutManagerHor = new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
+
+        recyclerViewCategory.setLayoutManager(linearLayoutManagerHor);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,9 +66,7 @@ public class CoursesFragment extends Fragment {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String userType = sharedPreferences.getString("userType","");
-        CourseAdapter adapter = new CourseAdapter(getActivity(),courses,userType);
-        recyclerView.setAdapter(adapter);
-
+//--------------------------------------------------------------------------------------------------
         ArrayList<String> categories = new ArrayList<>();
         categories.add("All");
         categories.add("Speaking");
@@ -73,30 +74,13 @@ public class CoursesFragment extends Fragment {
         categories.add("Writing");
         categories.add("Grammar");
         categories.add("Vocabulary");
+
         CategoryAdapter categoryAdapter = new CategoryAdapter(getActivity(),categories);
         recyclerViewCategory.setAdapter(categoryAdapter);
+//--------------------------------------------------------------------------------------------------
+        CourseAdapter adapter = new CourseAdapter(getActivity(),courses,userType);
+        recyclerView.setAdapter(adapter);
 
-        categoryAdapter.setItemClickListener(new CategoryAdapter.ItemClickListener() {
-            @Override
-            public void onItemClick(String category, int position) {
-                if(category.equals("All")){
-                    CourseAdapter adapter = new CourseAdapter(getActivity(), courses, userType);
-                    recyclerView.setAdapter(adapter);
-                }else {
-                    coursesAfterFillter.clear();
-                    for (Course course : courses) {
-                        if (course.category.equals(category)) {
-                            coursesAfterFillter.add(course);
-                        }
-                    }
-
-                    CourseAdapter adapter = new CourseAdapter(getActivity(), coursesAfterFillter, userType);
-                    recyclerView.setAdapter(adapter);
-                }
-                categoryAdapter.selectedPosition = position;
-                categoryAdapter.notifyDataSetChanged();
-            }
-        });
         if(userType.equals("Student")){
             floatingActionButton.setVisibility(View.GONE);
             String lang = sharedPreferences.getString("lang","");
@@ -131,16 +115,36 @@ public class CoursesFragment extends Fragment {
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
+                public void onCancelled(@NonNull DatabaseError error) {}
             });
         }
+// this method from the interface in catagoryAdapter V
+        categoryAdapter.setItemClickListener(new CategoryAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(String category, int position) {
+                categoryAdapter.selectedPosition = position;
 
+                if(category.equals("All")){
+                    CourseAdapter adapter = new CourseAdapter(getActivity(), courses, userType);
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    coursesAfterFillter.clear();
+                    for (Course course : courses) {
+                        if (course.category.equals(category)) {
+                            coursesAfterFillter.add(course);
+                        }
+                    }
 
+                    CourseAdapter adapter = new CourseAdapter(getActivity(), coursesAfterFillter, userType);
+                    recyclerView.setAdapter(adapter);
+                }
 
-
+                categoryAdapter.notifyDataSetChanged();
+            }
+        });
 
         return view;
     }
+
+
 }

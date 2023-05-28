@@ -17,11 +17,11 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginLeft="16dp"
-android:scaleType="centerCrop"
+            android:scaleType="centerCrop"
             android:layout_centerVertical="true"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-           android:src="@drawable/ic_baseline_hide_image_24" />
+            android:src="@drawable/ic_baseline_hide_image_24" />
 
 
 
@@ -37,7 +37,7 @@ android:scaleType="centerCrop"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:layout_marginTop="30dp"
-                android:text="TextViewTextViewTextViewTextView"
+                android:text="Student Name"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/status"
@@ -47,7 +47,7 @@ android:scaleType="centerCrop"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="TextView" />
+                android:text="Status" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@ android:scaleType="centerCrop"
                     android:drawablePadding="5dp"
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
-                    android:text="TextView" />
+                    android:text="Date" />
 
                 <TextView
                     android:id="@+id/time"
@@ -74,7 +74,7 @@ android:scaleType="centerCrop"
                     android:gravity="center_vertical"
                     android:paddingLeft="5dp"
                     android:layout_marginBottom="30dp"
-                    android:text="TextView" />
+                    android:text="Time" />
             </LinearLayout>
 
         </LinearLayout>
