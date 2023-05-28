@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">LanStructor</string>
+    <string name="api_key">AIzaSyD5f2W_avXKc58FY82a7FbczlKle-Llttc</string>
+    <string-array name="main_lang">
+        <item>Select main language</item>
+        <item>English</item>
+        <item>Arabic</item>
+        <item>Chinese</item>
+        <item>German</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
+    </string-array>
+
+
+    <string-array name="second_lang">
+        <item>Select your second language</item>
+        <item>English</item>
+        <item>Arabic</item>
+        <item>Chinese</item>
+        <item>German</item>
+        <item>Spanish</item>
+        <item>Turkish</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="category">
+        <item>Select course category</item>
+        <item>Speaking</item>
+        <item>Listening</item>
+        <item>Writing</item>
+        <item>Grammar</item>
+        <item>Vocabulary</item>
+    </string-array>
+
+
+    <string name="speech_prompt">Say something&#8230;</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+</resources>

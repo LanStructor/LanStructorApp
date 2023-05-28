@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "550790614022",
+    "project_id": "lanstructor-695bf",
+    "storage_bucket": "lanstructor-695bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550790614022:android:6551cf11d8bf324cb7c787",
+        "android_client_info": {
+          "package_name": "com.lanstructor.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550790614022-1qvrhpilb9l0fjt3j52dpom3v4v6flak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN34NTBLjGkiIdyPtqzpa2TjD22Qs57jE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550790614022-1qvrhpilb9l0fjt3j52dpom3v4v6flak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
