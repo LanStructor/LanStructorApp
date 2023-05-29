@@ -56,9 +56,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.InstructorVi
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
+            public void onFailure(@NonNull Exception exception) {}
         });
 
 

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -78,6 +79,7 @@ public class AddCourseActivity extends AppCompatActivity {
                     ProgressDialog progressDialog = new ProgressDialog(AddCourseActivity.this);
                     progressDialog.setMessage("Loading...");
                     progressDialog.show();
+
                     String id = FirebaseDatabase.getInstance().getReference().child("courses").push().getKey();
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("courses").child(id);
                     selectImage.setDrawingCacheEnabled(true);
@@ -86,6 +88,7 @@ public class AddCourseActivity extends AppCompatActivity {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                     byte[] data = baos.toByteArray();
+
                     UploadTask uploadTask = storageRef.putBytes(data);
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -129,6 +132,8 @@ public class AddCourseActivity extends AppCompatActivity {
             selectImage.setImageURI(uri);
         }
     }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == android.R.id.home){

@@ -40,7 +40,6 @@ public class InstructorForStudentAdapter extends RecyclerView.Adapter<Instructor
     @Override
     public InstructorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_instructor_for_studnet,parent,false);
-
         return new InstructorViewHolder(view);
     }
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -116,7 +115,6 @@ public class InstructorForStudentAdapter extends RecyclerView.Adapter<Instructor
             phone = itemView.findViewById(R.id.phone);
             img = itemView.findViewById(R.id.img);
             bookAppointment = itemView.findViewById(R.id.bookAppointment);
-
         }
     }
 }

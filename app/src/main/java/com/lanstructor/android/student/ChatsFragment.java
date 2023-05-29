@@ -35,15 +35,15 @@ public class ChatsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String userType = sharedPreferences.getString("userType","");
+
         ChatAppointmentAdapter adapter = new ChatAppointmentAdapter(getActivity(),appointments,userType);
         recyclerView.setAdapter(adapter);
 
 
-
-
-
+                                                                                                    //if the user is student get sid else insid
         FirebaseDatabase.getInstance().getReference().child("appointments").orderByChild(userType.equals("Student")?"studentId":"instructorId").equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -58,9 +58,7 @@ public class ChatsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
         return view;
     }

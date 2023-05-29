@@ -45,7 +45,6 @@ public class ChatAppointmentAdapter extends RecyclerView.Adapter<ChatAppointment
     @Override
     public InstructorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_chat_appointment,parent,false);
-
         return new InstructorViewHolder(view);
     }
 
@@ -58,7 +57,7 @@ public class ChatAppointmentAdapter extends RecyclerView.Adapter<ChatAppointment
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                holder.username.setText(user.username);
+                holder.username.setText(user.username);                                                                    // if the user is instructor add profile to the id So that we can differentiate between the certificate and the user's photo
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(userType.equals("Student")? user.id+"Profile": user.id);
                 storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -71,16 +70,12 @@ public class ChatAppointmentAdapter extends RecyclerView.Adapter<ChatAppointment
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
+                    public void onFailure(@NonNull Exception exception) {}
                 });
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
 
 

@@ -41,12 +41,16 @@ public class ChatGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_group);
-         group = (Group) getIntent().getSerializableExtra("group");
+
+        group = (Group) getIntent().getSerializableExtra("group");
+
         getSupportActionBar().setTitle(group.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         MessageAdapter adapter = new MessageAdapter(this,messages);
         recyclerView.setAdapter(adapter);
         FirebaseDatabase.getInstance().getReference().child("messages").child(group.id).addValueEventListener(new ValueEventListener() {

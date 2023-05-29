@@ -35,6 +35,7 @@ public class InstructorsFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         InstructorForStudentAdapter adapter = new InstructorForStudentAdapter(getActivity(),instructors);
         recyclerView.setAdapter(adapter);
 
@@ -51,9 +52,7 @@ public class InstructorsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
         return view;
     }

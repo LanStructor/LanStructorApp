@@ -73,20 +73,23 @@ public class InstructorProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_instructor_profile, container, false);
 
         setHasOptionsMenu(true);
+
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
+
+        inst_image = view.findViewById(R.id.inst_image);
         EditText username = view.findViewById(R.id.username);
         EditText phone = view.findViewById(R.id.phone);
         EditText mainLang = view.findViewById(R.id.mainLang);
         selectCertificate = view.findViewById(R.id.selectCertificate);
-        inst_image = view.findViewById(R.id.inst_image);
         EditText email = view.findViewById(R.id.email);
         Button update = view.findViewById(R.id.update);
 
         FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                 user = snapshot.getValue(User.class);
+                user = snapshot.getValue(User.class);
+
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(user.id);
 
                 storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -102,9 +105,7 @@ public class InstructorProfileFragment extends Fragment {
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
+                    public void onFailure(@NonNull Exception exception) {}
                 });
 
                 StorageReference storageRefProfileImage = FirebaseStorage.getInstance().getReference().child("users").child(user.id+"Profile");
@@ -121,9 +122,7 @@ public class InstructorProfileFragment extends Fragment {
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
+                    public void onFailure(@NonNull Exception exception) {}
                 });
 
                 username.setText(user.username);
@@ -133,8 +132,15 @@ public class InstructorProfileFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
 
+        inst_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,43);
             }
         });
 
@@ -147,16 +153,6 @@ public class InstructorProfileFragment extends Fragment {
             }
         });
 
-
-        inst_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent,43);
-            }
-        });
-
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,9 +162,10 @@ public class InstructorProfileFragment extends Fragment {
                     phone.setError("Enter phone");
                 } else{
                     if(selectCertificateUri != null){
-
                         progressDialog.show();
+
                         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
                         selectCertificate.setDrawingCacheEnabled(true);
                         selectCertificate.buildDrawingCache();
                         Bitmap bitmap = ((BitmapDrawable) selectCertificate.getDrawable()).getBitmap();
@@ -189,24 +186,19 @@ public class InstructorProfileFragment extends Fragment {
                         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                                // ...
-
                                 progressDialog.dismiss();
                             }
                         });
-
-
-
-
 
                     }
                     if(inst_imageUri != null){
 
                         progressDialog.show();
                         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()+"Profile");
+
                         inst_image.setDrawingCacheEnabled(true);
                         inst_image.buildDrawingCache();
+
                         Bitmap bitmap = ((BitmapDrawable) inst_image.getDrawable()).getBitmap();
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -225,9 +217,6 @@ public class InstructorProfileFragment extends Fragment {
                         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                                // ...
-
                                 progressDialog.dismiss();
                             }
                         });
@@ -273,9 +262,7 @@ public class InstructorProfileFragment extends Fragment {
                             getActivity().finish();
                         }
                     }).setNegativeButton("Cancel", null);
-
-            AlertDialog alert1 = alert.create();
-            alert1.show();
+            alert.show();
         }else if(item.getItemId() == R.id.ocr){
             //intent to pick image from gallery
             Intent intent = new Intent(Intent.ACTION_PICK);

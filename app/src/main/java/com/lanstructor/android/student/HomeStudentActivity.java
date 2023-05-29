@@ -19,7 +19,7 @@ public class HomeStudentActivity extends AppCompatActivity implements BottomNavi
         setContentView(R.layout.activity_home_student);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setOnItemSelectedListener(this);setTitle("Home");
+        bottomNavigationView.setOnItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
     }

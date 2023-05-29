@@ -40,7 +40,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/receiver_chat"
         android:padding="16dp"
-        android:text="kshgdfhjsd"
+        android:text="Message"
         android:textColor="@color/white"
          />
 </LinearLayout>

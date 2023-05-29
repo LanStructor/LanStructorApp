@@ -38,7 +38,7 @@ android:scaleType="centerCrop"
                 android:layout_height="wrap_content"
                android:paddingLeft="16dp"
                 android:paddingBottom="16dp"
-                android:text="TextViewTextViewTextViewTextView"
+                android:text="Group Name"
                 android:textStyle="bold" />
 
 
@@ -50,7 +50,7 @@ android:scaleType="centerCrop"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="16dp"
-                android:text="TextView" />
+                android:text="Language" />
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

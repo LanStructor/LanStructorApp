@@ -46,18 +46,26 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-         userType = sharedPreferences.getString("userType","");
 
-
-        appointment = (Appointment) getIntent().getSerializableExtra("appointment");
         getSupportActionBar().setTitle("Chat");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ImageButton send = findViewById(R.id.send);
+        messageBox = findViewById(R.id.messageBox);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        userType = sharedPreferences.getString("userType","");
+
+        appointment = (Appointment) getIntent().getSerializableExtra("appointment");
+
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         MessageAdapter adapter = new MessageAdapter(this,messages);
         recyclerView.setAdapter(adapter);
+
         FirebaseDatabase.getInstance().getReference().child("appointmentMessages").child(appointment.id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -71,14 +79,10 @@ public class ChatActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        ImageButton send = findViewById(R.id.send);
 
-         messageBox = findViewById(R.id.messageBox);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,16 +100,15 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+
         ImageButton stt = findViewById(R.id.stt);
         stt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                        getString(R.string.speech_prompt));
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.speech_prompt));
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
@@ -115,7 +118,6 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
-
 
     }
 
@@ -171,13 +173,12 @@ public class ChatActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(!userType.equals("Student")){
+        if(userType.equals("Instructor")){
             if(isMeetingStarted) {
                 String id = FirebaseDatabase.getInstance().getReference().child("appointmentMessages").child(appointment.id).push().getKey();
                 Message message = new Message(id, "Meeting ended", FirebaseAuth.getInstance().getCurrentUser().getUid());

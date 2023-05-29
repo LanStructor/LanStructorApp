@@ -34,9 +34,12 @@ public class GroupChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_group_chat, container, false);
+
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         GroupAdapter adapter = new GroupAdapter(getActivity(),groups);
         recyclerView.setAdapter(adapter);
 

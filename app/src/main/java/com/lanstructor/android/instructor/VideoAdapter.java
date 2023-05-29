@@ -51,7 +51,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.CourseViewHo
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
         holder.name.setText(videos.get(position).title);
 
-
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("videos").child(videos.get(position).courseId).child(videos.get(position).id);
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -64,15 +63,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.CourseViewHo
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
+            public void onFailure(@NonNull Exception exception) {}
         });
 
-        int i = position;
+
         if(userType.equals("Student")){
             holder.delete.setVisibility(View.GONE);
         }
+
+        int i = position;
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,8 +84,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.CourseViewHo
                             }
                         }).setNegativeButton("No", null);
 
-                AlertDialog alert1 = alert.create();
-                alert1.show();
+                alert.show();
             }
         });
 

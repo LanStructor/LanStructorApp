@@ -41,6 +41,7 @@ public class OCRActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ocractivity);
         getSupportActionBar().setTitle("OCR Result");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         content = findViewById(R.id.content);
         img = findViewById(R.id.img);
 
@@ -48,9 +49,6 @@ public class OCRActivity extends AppCompatActivity {
         String path = intent.getStringExtra("path");
 
         Bitmap myBitmap = BitmapFactory.decodeFile(path);
-
-//        Bitmap myBitmap = BitmapFactory.decodeFile(path);
-
 
 
         ExifInterface ei = null;

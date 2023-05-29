@@ -61,10 +61,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
+            public void onFailure(@NonNull Exception exception) {}
         });
+
         if(userType.equals("Student")){
             holder.delete.setVisibility(View.GONE);
         }
@@ -81,11 +80,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
                                 FirebaseDatabase.getInstance().getReference().child("videos").child(courses.get(i).id).removeValue();
                                 FirebaseDatabase.getInstance().getReference().child("courses").child(courses.get(i).id).removeValue();
+
+                                courses.remove(i);
+                                notifyDataSetChanged();
                             }
                         }).setNegativeButton("No", null);
 
-                AlertDialog alert1 = alert.create();
-                alert1.show();
+                alert.show();
             }
         });
 

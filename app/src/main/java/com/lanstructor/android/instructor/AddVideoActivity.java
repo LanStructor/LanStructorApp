@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class AddVideoActivity extends AppCompatActivity {
 
     ImageView video_image;
     Uri uri;
+    Course course;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class AddVideoActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Video");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Course course = (Course) getIntent().getSerializableExtra("course");
+         course = (Course) getIntent().getSerializableExtra("course");
 
         video_image = findViewById(R.id.video_image);
         EditText title = findViewById(R.id.title);
