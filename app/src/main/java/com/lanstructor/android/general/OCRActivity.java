@@ -1,4 +1,4 @@
-package com.lanstructor.android;
+package com.lanstructor.android.general;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +27,7 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.lanstructor.android.R;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -164,4 +165,13 @@ public class OCRActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(textToSpeechSystem != null){
+            if(textToSpeechSystem.isSpeaking()){
+                textToSpeechSystem.stop();
+            }
+        }
+    }
 }

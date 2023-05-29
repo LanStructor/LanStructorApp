@@ -20,11 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.lanstructor.android.LoginActivity;
-import com.lanstructor.android.PlayVideoFormYoutubeActivity;
+import com.lanstructor.android.general.PlayVideoFormYoutubeActivity;
 import com.lanstructor.android.R;
-import com.lanstructor.android.admin.HomeAdminActivity;
-import com.lanstructor.android.model.Course;
 import com.lanstructor.android.model.Video;
 
 import java.util.ArrayList;

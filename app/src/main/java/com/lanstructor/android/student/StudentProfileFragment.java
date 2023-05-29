@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,9 +40,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.lanstructor.android.LoginActivity;
-import com.lanstructor.android.OCRActivity;
+import com.lanstructor.android.general.OCRActivity;
 import com.lanstructor.android.R;
+import com.lanstructor.android.authentication.WelcomeActivity;
 import com.lanstructor.android.model.User;
 
 import java.io.ByteArrayOutputStream;
@@ -177,8 +178,9 @@ public class StudentProfileFragment extends Fragment {
                     .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int which) {
+                            PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().clear().commit();
                             FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(getActivity(), LoginActivity.class));
+                            startActivity(new Intent(getActivity(), WelcomeActivity.class));
                             getActivity().finish();
                         }
                     }).setNegativeButton("Cancel", null);

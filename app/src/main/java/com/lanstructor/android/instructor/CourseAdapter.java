@@ -17,11 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.lanstructor.android.R;
 import com.lanstructor.android.model.Course;
+import com.lanstructor.android.model.User;
 
 import java.util.ArrayList;
 
@@ -90,6 +94,32 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             }
         });
 
+        FirebaseDatabase.getInstance().getReference().child("users").child(courses.get(position).instId ).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                holder.instName.setText(user.username);                                                                    // if the user is instructor add profile to the id So that we can differentiate between the certificate and the user's photo
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(user.id+"Profile");
+                storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        // Got the download URL for 'users/me/profile.png'
+                        Glide.with(context)
+                                .load(uri)
+                                .placeholder(R.drawable.ic_baseline_hide_image_24)
+                                .into(holder.instImg);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {}
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+
     }
 
     @Override
@@ -98,14 +128,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     class CourseViewHolder extends RecyclerView.ViewHolder{
-        ImageView img,delete;
-        TextView name,lang,price;
+        ImageView img,delete,instImg;
+        TextView name,lang,price,instName;
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             lang = itemView.findViewById(R.id.lang);
             price = itemView.findViewById(R.id.price);
             img = itemView.findViewById(R.id.img);
+            instImg = itemView.findViewById(R.id.instImg);
+            instName = itemView.findViewById(R.id.instName);
             delete = itemView.findViewById(R.id.delete);
 
             itemView.setOnClickListener(new View.OnClickListener() {

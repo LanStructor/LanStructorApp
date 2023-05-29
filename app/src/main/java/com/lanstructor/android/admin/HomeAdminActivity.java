@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,8 +18,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.lanstructor.android.LoginActivity;
 import com.lanstructor.android.R;
+import com.lanstructor.android.authentication.WelcomeActivity;
 import com.lanstructor.android.model.User;
 
 import java.util.ArrayList;
@@ -70,9 +71,10 @@ public class HomeAdminActivity extends AppCompatActivity {
             alert.setMessage("Are you sure?")
                     .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+                            PreferenceManager.getDefaultSharedPreferences(HomeAdminActivity.this).edit().clear().commit();
                             //sign out from database
                             FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(HomeAdminActivity.this, LoginActivity.class));
+                            startActivity(new Intent(HomeAdminActivity.this, WelcomeActivity.class));
                             finish();
                         }
                     }).setNegativeButton("Cancel", null);

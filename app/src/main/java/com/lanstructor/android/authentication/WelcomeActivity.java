@@ -1,4 +1,4 @@
-package com.lanstructor.android;
+package com.lanstructor.android.authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.lanstructor.android.R;
 import com.lanstructor.android.admin.HomeAdminActivity;
 import com.lanstructor.android.instructor.HomeInstructorActivity;
 import com.lanstructor.android.student.HomeStudentActivity;

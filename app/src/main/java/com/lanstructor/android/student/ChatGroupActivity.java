@@ -25,7 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lanstructor.android.R;
-import com.lanstructor.android.VideoCallActivity;
+import com.lanstructor.android.general.VideoCallActivity;
 import com.lanstructor.android.model.Group;
 import com.lanstructor.android.model.Message;
 

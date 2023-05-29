@@ -26,7 +26,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Instruct
 
     Context context;
     ArrayList<Message> messages;
-    private TextToSpeech textToSpeechSystem;
+     TextToSpeech textToSpeechSystem;
 
     public MessageAdapter(Context context, ArrayList<Message> messages) {
         this.context = context;

@@ -27,9 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lanstructor.android.R;
-import com.lanstructor.android.VideoCallActivity;
+import com.lanstructor.android.general.VideoCallActivity;
 import com.lanstructor.android.model.Appointment;
-import com.lanstructor.android.model.Group;
 import com.lanstructor.android.model.Message;
 
 import java.util.ArrayList;
@@ -42,6 +41,7 @@ public class ChatActivity extends AppCompatActivity {
     Appointment appointment;
     String userType;
     boolean isMeetingStarted = false;
+    MessageAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class ChatActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        MessageAdapter adapter = new MessageAdapter(this,messages);
+         adapter = new MessageAdapter(this,messages);
         recyclerView.setAdapter(adapter);
 
         FirebaseDatabase.getInstance().getReference().child("appointmentMessages").child(appointment.id).addValueEventListener(new ValueEventListener() {
@@ -130,6 +130,16 @@ public class ChatActivity extends AppCompatActivity {
             String t = result.get(0);
             messageBox.setText(t);
 
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(adapter.textToSpeechSystem != null){
+            if(adapter.textToSpeechSystem.isSpeaking()){
+                adapter.textToSpeechSystem.stop();
+            }
         }
     }
 

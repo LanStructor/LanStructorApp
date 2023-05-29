@@ -1,4 +1,4 @@
-package com.lanstructor.android;
+package com.lanstructor.android.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.lanstructor.android.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 

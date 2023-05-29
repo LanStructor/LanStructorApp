@@ -19,21 +19,21 @@
             android:name=".instructor.AddHomeWorkActivity"
             android:exported="false" />
         <activity
-            android:name=".VideoCallActivity"
+            android:name=".general.VideoCallActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".OCRActivity"
+            android:name=".general.OCRActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PlayVideoFormYoutubeActivity"
+            android:name=".general.PlayVideoFormYoutubeActivity"
             android:exported="false"
             android:screenOrientation="landscape">
             <meta-data
@@ -116,42 +116,42 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterAsInstructorActivity"
+            android:name=".authentication.RegisterAsInstructorActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterAsStudentActivity"
+            android:name=".authentication.RegisterAsStudentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectUserTypeActivity"
+            android:name=".authentication.SelectUserTypeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name=".authentication.ForgetPasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".authentication.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".authentication.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

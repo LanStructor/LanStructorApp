@@ -1,4 +1,4 @@
-package com.lanstructor.android;
+package com.lanstructor.android.general;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.lanstructor.android.R;
 import com.lanstructor.android.model.Video;
 
 import java.util.regex.Matcher;

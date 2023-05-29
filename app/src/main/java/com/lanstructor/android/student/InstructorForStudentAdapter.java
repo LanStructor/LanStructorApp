@@ -3,6 +3,7 @@ package com.lanstructor.android.student;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.lanstructor.android.model.Appointment;
 import com.lanstructor.android.R;
 import com.lanstructor.android.model.User;
@@ -49,6 +58,23 @@ public class InstructorForStudentAdapter extends RecyclerView.Adapter<Instructor
         holder.lang.setText(instructors.get(position).mainLang);
         holder.phone.setText(instructors.get(position).phone);
         int index = position;
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("users").child(instructors.get(position).id+"Profile");
+        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Got the download URL for 'users/me/profile.png'
+                Glide.with(context)
+                        .load(uri)
+                        .placeholder(R.drawable.ic_baseline_hide_image_24)
+                        .into(holder.img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
         holder.bookAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

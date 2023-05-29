@@ -1,4 +1,4 @@
-package com.lanstructor.android;
+package com.lanstructor.android.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.lanstructor.android.admin.AddGroupActivity;
+import com.lanstructor.android.R;
 import com.lanstructor.android.admin.HomeAdminActivity;
 import com.lanstructor.android.instructor.HomeInstructorActivity;
 import com.lanstructor.android.model.User;

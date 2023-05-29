@@ -12,12 +12,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_hide_image_24" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/bg_info"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                >
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/instImg"
+                    android:scaleType="centerCrop"/>
+
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="instructor Name"
+                android:id="@+id/instName"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

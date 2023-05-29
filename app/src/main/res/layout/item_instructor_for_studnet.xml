@@ -17,9 +17,9 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginLeft="16dp"
-            android:tint="#757575"
-           android:src="@drawable/instructor" />
 
+           android:src="@drawable/instructor" />
+        <!--            android:tint="#757575"-->
 
         <android.widget.ImageView
             android:id="@+id/bookAppointment"

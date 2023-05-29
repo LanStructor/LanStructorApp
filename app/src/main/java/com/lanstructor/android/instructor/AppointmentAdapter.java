@@ -81,6 +81,12 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             }
         });
 
+
+        if(appointments.get(position).status.equals("Accepted")){
+            holder.accept.setVisibility(View.GONE);
+            holder.reject.setVisibility(View.GONE);
+        }
+
         int index = position;
 
         holder.accept.setOnClickListener(new View.OnClickListener() {

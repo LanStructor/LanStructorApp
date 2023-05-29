@@ -1,10 +1,11 @@
-package com.lanstructor.android;
+package com.lanstructor.android.general;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.lanstructor.android.R;
 import com.lanstructor.android.model.Appointment;
 import com.lanstructor.android.model.Group;
 import com.zegocloud.uikit.prebuilt.videoconference.ZegoUIKitPrebuiltVideoConferenceConfig;

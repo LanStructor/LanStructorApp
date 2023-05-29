@@ -1,4 +1,4 @@
-package com.lanstructor.android;
+package com.lanstructor.android.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.lanstructor.android.R;
 import com.lanstructor.android.model.User;
 
 public class RegisterAsStudentActivity extends AppCompatActivity {
