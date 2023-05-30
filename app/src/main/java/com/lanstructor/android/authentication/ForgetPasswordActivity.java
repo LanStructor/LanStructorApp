@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -32,20 +33,25 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                auth.sendPasswordResetEmail(email.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(ForgetPasswordActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    Toast.makeText(ForgetPasswordActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                if (!Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()) {
+                    email.setError("Enter valid email address");
+                } else {
+                    auth.sendPasswordResetEmail(email.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(ForgetPasswordActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(ForgetPasswordActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
+                }
             }
         });
+
     }
 
     @Override
