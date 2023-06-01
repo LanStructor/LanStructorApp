@@ -62,7 +62,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:text="Select You Certification" />
+            android:text="Select Your Certification" />
 
         <ImageView
             android:id="@+id/selectCertificate"

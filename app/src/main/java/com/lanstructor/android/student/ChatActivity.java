@@ -155,7 +155,8 @@ public class ChatActivity extends AppCompatActivity {
             finish();
         }else if(item.getItemId() == R.id.call){
             if(userType.equals("Student")){
-                if(messages.get(messages.size()-1).message.equals("Meeting has bes started join to meeting by press call button")) {
+
+                if(messages.get(messages.size()-1).message.equals("Meeting has been started, join the meeting by pressing call button")) {
                     Intent intent = new Intent(ChatActivity.this, VideoCallActivity.class);
                     intent.putExtra("appointment", appointment);
                     startActivity(intent);

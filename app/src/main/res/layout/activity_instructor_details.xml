@@ -75,7 +75,7 @@
             android:layout_height="200dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
+            app:srcCompat="@drawable/ic_baseline_hide_image_24" />
 
         <TextView
             android:gravity="center_vertical"
