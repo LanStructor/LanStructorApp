@@ -9,10 +9,6 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lanstructor.android.R;
 import com.lanstructor.android.student.ChatsFragment;
-import com.lanstructor.android.instructor.CoursesFragment;
-import com.lanstructor.android.student.GroupChatFragment;
-import com.lanstructor.android.student.InstructorsFragment;
-import com.lanstructor.android.student.StudentProfileFragment;
 
 public class HomeInstructorActivity extends AppCompatActivity implements BottomNavigationView.OnItemSelectedListener {
     BottomNavigationView bottomNavigationView;
@@ -28,7 +24,7 @@ public class HomeInstructorActivity extends AppCompatActivity implements BottomN
         bottomNavigationView.setOnItemSelectedListener(this);
 
         bottomNavigationView.setSelectedItemId(R.id.home);
-        //setTitle("Home");
+
     }
 
     @Override

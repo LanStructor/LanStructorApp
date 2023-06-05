@@ -42,6 +42,7 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.In
 
     @Override
     public void onBindViewHolder(@NonNull InstructorViewHolder holder, int position) {
+
         holder.username.setText(instructors.get(position).username);
         holder.lang.setText(instructors.get(position).mainLang);
         holder.phone.setText(instructors.get(position).phone);

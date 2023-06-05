@@ -32,6 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         if(currentUser != null){
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
             String userType = sharedPreferences.getString("userType","userType");

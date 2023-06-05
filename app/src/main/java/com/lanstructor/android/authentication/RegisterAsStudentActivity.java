@@ -51,8 +51,8 @@ public class RegisterAsStudentActivity extends AppCompatActivity {
                     username.setError("Enter username");
                 }else if(phone.getText().toString().isEmpty()){
                     phone.setError("Enter phone");
-                }else if(mainLang.getSelectedItem().toString().equals("Select your main language")){
-                    Toast.makeText(RegisterAsStudentActivity.this, "Select your main language", Toast.LENGTH_SHORT).show();
+                }else if(mainLang.getSelectedItem().toString().equals("Select your native language")){
+                    Toast.makeText(RegisterAsStudentActivity.this, "Select your native language", Toast.LENGTH_SHORT).show();
                 }else if(secondLang.getSelectedItem().toString().equals("Select your second language")){
                     Toast.makeText(RegisterAsStudentActivity.this, "Select your second language", Toast.LENGTH_SHORT).show();
                 }else if(!Patterns.EMAIL_ADDRESS.matcher(email.getText()).matches()){
@@ -101,7 +101,7 @@ public class RegisterAsStudentActivity extends AppCompatActivity {
 
 
     }
-//??????????????????????????????????????????????????????????????????????
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == android.R.id.home){
@@ -110,5 +110,5 @@ public class RegisterAsStudentActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
-//??????????????????????????????????????????????????????????????????????
+
 }

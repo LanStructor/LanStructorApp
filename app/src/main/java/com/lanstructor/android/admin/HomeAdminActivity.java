@@ -36,6 +36,7 @@ public class HomeAdminActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         InstructorAdapter adapter = new InstructorAdapter(HomeAdminActivity.this,instructors);
         recyclerView.setAdapter(adapter);
        //                                                                      to get only instructors
@@ -68,11 +69,11 @@ public class HomeAdminActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.logout){
             AlertDialog.Builder alert = new AlertDialog.Builder(HomeAdminActivity.this);
-            alert.setMessage("Are you sure?")
+            alert.setMessage("Are you sure you want to logout?")
                     .setPositiveButton("Logout", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             PreferenceManager.getDefaultSharedPreferences(HomeAdminActivity.this).edit().clear().commit();
-                            //sign out from database
+                            //sign out
                             FirebaseAuth.getInstance().signOut();
                             startActivity(new Intent(HomeAdminActivity.this, WelcomeActivity.class));
                             finish();

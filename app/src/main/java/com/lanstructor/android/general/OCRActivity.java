@@ -115,22 +115,12 @@ public class OCRActivity extends AppCompatActivity {
     private void processTextRecognitionResult(FirebaseVisionText firebaseVisionText) {
         content.setText(null);
         if (firebaseVisionText.getTextBlocks().size() == 0) {
-            content.setText("Not Found Text");
+            content.setText("No Text Found");
             return;
         }
         for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
             content.append(block.getText());
 
-            //mTextView.setText(block.getText());
-
-            //In case you want to extract each line
-			/*
-			for (FirebaseVisionText.Line line: block.getLines()) {
-				for (FirebaseVisionText.Element element: line.getElements()) {
-					mTextView.append(element.getText() + " ");
-				}
-			}
-			*/
         }
     }
     TextToSpeech textToSpeechSystem;

@@ -21,7 +21,7 @@ import com.lanstructor.android.model.User;
 import java.util.ArrayList;
 
 
-public class InstructorsFragment extends Fragment {
+public class bookAppWithInstructorFragment extends Fragment {
 
 
     ArrayList<User> instructors = new ArrayList<>();

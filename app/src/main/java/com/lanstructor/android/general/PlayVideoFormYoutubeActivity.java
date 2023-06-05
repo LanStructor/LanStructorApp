@@ -23,21 +23,19 @@ public class PlayVideoFormYoutubeActivity extends YouTubeBaseActivity {
 
         Video video = (Video) getIntent().getSerializableExtra("video");
 
-        YouTubePlayerView youTubePlayerView =
-                (YouTubePlayerView) findViewById(R.id.player);
+        YouTubePlayerView youTubePlayerView =  (YouTubePlayerView) findViewById(R.id.player);
 
-        youTubePlayerView.initialize("AIzaSyD5f2W_avXKc58FY82a7FbczlKle-Llttc",
+        youTubePlayerView.initialize(getString(R.string.youtube_api_key),
                 new YouTubePlayer.OnInitializedListener() {
                     @Override
                     public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                         YouTubePlayer youTubePlayer, boolean b) {
 
-                        // do any work here to cue video, play video, etc.
+
                         youTubePlayer.cueVideo(extractYoutubeVideoId(video.urlPath));
                     }
                     @Override
-                    public void onInitializationFailure(YouTubePlayer.Provider provider,
-                                                        YouTubeInitializationResult youTubeInitializationResult) {
+                    public void onInitializationFailure(YouTubePlayer.Provider provider,YouTubeInitializationResult youTubeInitializationResult) {
 
                     }
                 });

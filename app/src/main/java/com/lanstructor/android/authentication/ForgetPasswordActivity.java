@@ -3,6 +3,7 @@ package com.lanstructor.android.authentication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.MenuItem;
@@ -42,6 +43,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(ForgetPasswordActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ForgetPasswordActivity.this,LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     } else {
                                         Toast.makeText(ForgetPasswordActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }

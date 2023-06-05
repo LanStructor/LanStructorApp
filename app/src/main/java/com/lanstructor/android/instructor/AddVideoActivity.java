@@ -34,6 +34,8 @@ import com.lanstructor.android.model.Group;
 import com.lanstructor.android.model.Video;
 
 import java.io.ByteArrayOutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddVideoActivity extends AppCompatActivity {
 
@@ -74,9 +76,19 @@ public class AddVideoActivity extends AppCompatActivity {
                 }else if(urlPath.getText().toString().isEmpty()){
                     urlPath.setError("Enter urlPath");
                 } else {
+                    String pattern = "(?<=watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*";
+                    Pattern compiledPattern = Pattern.compile(pattern);
+                    Matcher matcher = compiledPattern.matcher(urlPath.getText().toString());
+                    if(!matcher.find()){
+                        Toast.makeText(AddVideoActivity.this, "invalid URL", Toast.LENGTH_SHORT).show();
+                      return;
+                    }
+              ;
+
                     ProgressDialog progressDialog = new ProgressDialog(AddVideoActivity.this);
                     progressDialog.setMessage("Loading...");
                     progressDialog.show();
+
                     String id = FirebaseDatabase.getInstance().getReference().child("videos").child(course.id).push().getKey();
                     StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("videos").child(course.id).child(id);
                     video_image.setDrawingCacheEnabled(true);

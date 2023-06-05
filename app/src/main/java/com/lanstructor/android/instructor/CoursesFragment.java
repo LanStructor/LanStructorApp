@@ -28,15 +28,9 @@ import java.util.ArrayList;
 
 public class CoursesFragment extends Fragment {
 
-    // 1- add course
-    // 2- show courses
-    // : delete or Show homeworks  - home work details students answer - answers
-    // 4- add video
-    // 5- show videos
-    // 6 delete video
 
     ArrayList<Course> courses = new ArrayList<>();
-    ArrayList<Course> coursesAfterFillter = new ArrayList<>();
+    ArrayList<Course> filteredCourses = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,14 +122,14 @@ public class CoursesFragment extends Fragment {
                     CourseAdapter adapter = new CourseAdapter(getActivity(), courses, userType);
                     recyclerView.setAdapter(adapter);
                 }else {
-                    coursesAfterFillter.clear();
+                    filteredCourses.clear();
                     for (Course course : courses) {
                         if (course.category.equals(category)) {
-                            coursesAfterFillter.add(course);
+                            filteredCourses.add(course);
                         }
                     }
 
-                    CourseAdapter adapter = new CourseAdapter(getActivity(), coursesAfterFillter, userType);
+                    CourseAdapter adapter = new CourseAdapter(getActivity(), filteredCourses, userType);
                     recyclerView.setAdapter(adapter);
                 }
 

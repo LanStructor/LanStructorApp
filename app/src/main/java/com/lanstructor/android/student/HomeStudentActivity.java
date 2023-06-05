@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.lanstructor.android.R;
 import com.lanstructor.android.instructor.CoursesFragment;
 
@@ -29,7 +28,7 @@ public class HomeStudentActivity extends AppCompatActivity implements BottomNavi
         switch (item.getItemId()){
             case R.id.home:
             setTitle("Home");
-            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,new InstructorsFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,new bookAppWithInstructorFragment()).commit();
             break;
             case R.id.courses:
                 setTitle("Courses");

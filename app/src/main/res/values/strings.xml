@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">LanStructor</string>
-    <string name="api_key">AIzaSyD5f2W_avXKc58FY82a7FbczlKle-Llttc</string>
+    <string name="youtube.api_key">AIzaSyD5f2W_avXKc58FY82a7FbczlKle-Llttc</string>
+
     <string-array name="main_lang">
-        <item>Select main language</item>
+        <item>Select your native language</item>
         <item>English</item>
         <item>Arabic</item>
         <item>Chinese</item>

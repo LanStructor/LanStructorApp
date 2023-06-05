@@ -47,11 +47,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Instruct
             holder.sender.setVisibility(View.VISIBLE);
             holder.receiver.setVisibility(View.GONE);
             holder.receiver_name.setVisibility(View.GONE);
+
             holder.sender.setText(messages.get(position).message);
         }else{
             holder.receiver.setVisibility(View.VISIBLE);
             holder.receiver_name.setVisibility(View.VISIBLE);
             holder.sender.setVisibility(View.GONE);
+
             holder.receiver.setText(messages.get(position).message);
             FirebaseDatabase.getInstance().getReference().child("users").child(messages.get(position).senderId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -76,7 +78,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.Instruct
                         if (status == TextToSpeech.SUCCESS) {
                             String textToSay = holder.receiver.getText().toString();
                             textToSpeechSystem.setLanguage(Locale.ENGLISH);
-                            textToSpeechSystem.speak(textToSay, TextToSpeech.QUEUE_ADD, null);
+
+                            textToSpeechSystem.speak(textToSay, TextToSpeech.QUEUE_FLUSH, null);
                         }
                     }
                 });
